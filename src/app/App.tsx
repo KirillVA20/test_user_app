@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
 import ruRU from 'antd/locale/ru_RU';
 import { ProtectedRoute, PublicRoute } from '@/features/auth';
@@ -13,6 +13,10 @@ const App: React.FC = () => {
       <Routes>
         <Route
           path="/"
+          element={<Navigate to="/users" replace />}
+        />
+        <Route
+          path="/users"
           element={
             <ProtectedRoute>
               <Users />
