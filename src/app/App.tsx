@@ -5,6 +5,7 @@ import ruRU from 'antd/locale/ru_RU';
 import { ProtectedRoute, PublicRoute } from '@/features/auth';
 import { Login } from '@/pages/login';
 import { Users } from '@/pages/users';
+import { NotFound } from '@/pages/not-found';
 
 const App: React.FC = () => {
   return (
@@ -26,6 +27,7 @@ const App: React.FC = () => {
             </PublicRoute>
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </ConfigProvider>
   );
