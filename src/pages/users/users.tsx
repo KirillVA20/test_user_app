@@ -1,42 +1,47 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
-import { LogoutButton } from '@/features/auth';
+import { Alert, Empty } from 'antd';
+import { useUsers, UserCard } from '@/entities/user';
+import { UsersLayout } from './ui';
 
-const Container = styled.div`
-  padding: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
-`;
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 32px;
-`;
-
-const Title = styled.h1`
-  font-size: 32px;
-  font-weight: 600;
-  color: #333;
-  margin: 0;
+const UsersGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  margin-top: 24px;
 `;
 
 export const Users: React.FC = () => {
-  const navigate = useNavigate();
+  const { data: users, isError, error } = useUsers();
 
-  const handleLogout = () => {
-    navigate('/login');
-  };
+  if (isError) {
+    return (
+      <UsersLayout>
+        <Alert
+          message="Ошибка загрузки"
+          description={error?.message || 'Не удалось загрузить список пользователей'}
+          type="error"
+          showIcon
+        />
+      </UsersLayout>
+    );
+  }
+
+  if (!users || users.length === 0) {
+    return (
+      <UsersLayout>
+        <Empty description="Пользователи не найдены" />
+      </UsersLayout>
+    );
+  }
 
   return (
-    <Container>
-      <Header>
-        <Title>Страница пользователей</Title>
-        <LogoutButton type="primary" onSuccess={handleLogout} />
-      </Header>
-      <p>Добро пожаловать! Вы успешно авторизованы.</p>
-    </Container>
+    <UsersLayout>
+      <UsersGrid>
+        {users.map((user) => (
+          <UserCard key={user.id} user={user} />
+        ))}
+      </UsersGrid>
+    </UsersLayout>
   );
 };

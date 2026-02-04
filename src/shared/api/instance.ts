@@ -28,6 +28,8 @@ apiInstance.interceptors.request.use(
 );
 
 apiInstance.interceptors.response.use(
-  (response: AxiosResponse) => {},
+  (response: AxiosResponse) => {
+    return response
+  },
   async (error: AxiosError) => {}
 );
