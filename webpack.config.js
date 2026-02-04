@@ -56,7 +56,7 @@ module.exports = {
     compress: true,
     port: process.env.PORT,
     hot: true,
-    open: true,
+    open: '/',
     historyApiFallback: true,
   },
   mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
