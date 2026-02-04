@@ -20,7 +20,7 @@ export const Login: React.FC = () => {
       message: 'Успешная авторизация',
       description: 'Добро пожаловать!',
     });
-    navigate('/');
+    navigate('/users');
   }
 
   const onError = (error: Error) => {

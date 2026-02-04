@@ -1,36 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
-import { Spin, Alert, Empty } from 'antd';
-import { LogoutButton } from '@/features/auth';
+import { Alert, Empty } from 'antd';
 import { useUsers, UserCard } from '@/entities/user';
-
-const Container = styled.div`
-  padding: 40px;
-  max-width: 1200px;
-  margin: 0 auto;
-`;
-
-const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 32px;
-`;
-
-const Title = styled.h1`
-  font-size: 32px;
-  font-weight: 600;
-  color: #333;
-  margin: 0;
-`;
-
-const LoadingContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 400px;
-`;
+import { UsersLayout } from './ui';
 
 const UsersGrid = styled.div`
   display: grid;
@@ -40,67 +12,36 @@ const UsersGrid = styled.div`
 `;
 
 export const Users: React.FC = () => {
-  const navigate = useNavigate();
-  const { data: users, isLoading, isError, error } = useUsers();
-
-  const handleLogout = () => {
-    navigate('/login');
-  };
-
-  if (isLoading) {
-    return (
-      <Container>
-        <Header>
-          <Title>Пользователи</Title>
-          <LogoutButton type="primary" onSuccess={handleLogout} />
-        </Header>
-        <LoadingContainer>
-          <Spin size="large" tip="Загрузка пользователей..." />
-        </LoadingContainer>
-      </Container>
-    );
-  }
+  const { data: users, isError, error } = useUsers();
 
   if (isError) {
     return (
-      <Container>
-        <Header>
-          <Title>Пользователи</Title>
-          <LogoutButton type="primary" onSuccess={handleLogout} />
-        </Header>
+      <UsersLayout>
         <Alert
           message="Ошибка загрузки"
           description={error?.message || 'Не удалось загрузить список пользователей'}
           type="error"
           showIcon
         />
-      </Container>
+      </UsersLayout>
     );
   }
 
   if (!users || users.length === 0) {
     return (
-      <Container>
-        <Header>
-          <Title>Пользователи</Title>
-          <LogoutButton type="primary" onSuccess={handleLogout} />
-        </Header>
+      <UsersLayout>
         <Empty description="Пользователи не найдены" />
-      </Container>
+      </UsersLayout>
     );
   }
 
   return (
-    <Container>
-      <Header>
-        <Title>Пользователи</Title>
-        <LogoutButton type="primary" onSuccess={handleLogout} />
-      </Header>
+    <UsersLayout>
       <UsersGrid>
         {users.map((user) => (
           <UserCard key={user.id} user={user} />
         ))}
       </UsersGrid>
-    </Container>
+    </UsersLayout>
   );
 };
