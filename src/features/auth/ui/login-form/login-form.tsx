@@ -35,6 +35,9 @@ interface LoginFormProps {
   onError?: (error: Error) => void
 }
 
+const usernameRules = [{ required: true, message: 'Пожалуйста, введите логин' }]
+const passwordRules = [{ required: true, message: 'Пожалуйста, введите логин' }]
+
 export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess, onError }) => {
   const { form, handleSubmit, handleReset, isLoading, isError, error } = useLoginForm({ onSuccess, onError });
 
@@ -44,14 +47,14 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess, onError }) => {
       <Form form={form} onFinish={handleSubmit} layout="vertical">
         <Form.Item
           name="username"
-          rules={[{ required: true, message: 'Пожалуйста, введите логин' }]}
+          rules={usernameRules}
         >
           <Input placeholder="Логин" size="large" disabled={isLoading} />
         </Form.Item>
 
         <Form.Item
           name="password"
-          rules={[{ required: true, message: 'Пожалуйста, введите пароль' }]}
+          rules={passwordRules}
         >
           <Input.Password
             placeholder="Пароль"

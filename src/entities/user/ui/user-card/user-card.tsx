@@ -51,7 +51,7 @@ interface UserCardProps {
 }
 
 const formatDate = (dateString: string) => {
-  return dayjs(dateString).format('D MMMM YYYY');
+  return dayjs(dateString).format('DD.MM.YYYY');
 };
 
 export const UserCard: React.FC<UserCardProps> = ({ user, onClick }) => {
