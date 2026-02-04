@@ -23,11 +23,17 @@ const Title = styled.h1`
   margin: 0;
 `;
 
+const HeaderActions = styled.div`
+  display: flex;
+  gap: 12px;
+`;
+
 interface UsersLayoutProps {
   children: React.ReactNode;
+  headerAction?: React.ReactNode;
 }
 
-export const UsersLayout: React.FC<UsersLayoutProps> = ({ children }) => {
+export const UsersLayout: React.FC<UsersLayoutProps> = ({ children, headerAction }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -38,7 +44,10 @@ export const UsersLayout: React.FC<UsersLayoutProps> = ({ children }) => {
     <Container>
       <Header>
         <Title>Пользователи</Title>
-        <LogoutButton type="primary" onSuccess={handleLogout} />
+        <HeaderActions>
+          {headerAction}
+          <LogoutButton type="primary" onSuccess={handleLogout} />
+        </HeaderActions>
       </Header>
       {children}
     </Container>
