@@ -36,7 +36,7 @@ interface LoginFormProps {
 }
 
 const usernameRules = [{ required: true, message: 'Пожалуйста, введите логин' }]
-const passwordRules = [{ required: true, message: 'Пожалуйста, введите логин' }]
+const passwordRules = [{ required: true, message: 'Пожалуйста, введите пароль' }]
 
 export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess, onError }) => {
   const { form, handleSubmit, handleReset, isLoading, isError, error } = useLoginForm({ onSuccess, onError });
