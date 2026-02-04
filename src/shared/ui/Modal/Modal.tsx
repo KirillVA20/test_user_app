@@ -8,18 +8,6 @@ const StyledModal = styled(AntModal)`
     overflow: hidden;
   }
 
-  .ant-modal-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    border-bottom: none;
-    padding: 20px 24px;
-
-    .ant-modal-title {
-      color: #fff;
-      font-weight: 600;
-      font-size: 18px;
-    }
-  }
-
   .ant-modal-close {
     color: #fff;
 
@@ -28,13 +16,9 @@ const StyledModal = styled(AntModal)`
     }
   }
 
-  .ant-modal-body {
-    padding: 24px;
-  }
-
   .ant-modal-footer {
     border-top: 1px solid #f0f0f0;
-    padding: 16px 24px;
+    padding: 16px 0;
   }
 `;
 
