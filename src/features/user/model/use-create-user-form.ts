@@ -9,7 +9,11 @@ interface UseCreateUserFormParams {
   onError?: (error: Error) => void;
 }
 
-export const useCreateUserForm = ({ open, onSuccess, onError }: UseCreateUserFormParams) => {
+export const useCreateUserForm = ({
+  open,
+  onSuccess,
+  onError,
+}: UseCreateUserFormParams) => {
   const [form] = Form.useForm<UserFormValues>();
   const createMutation = useCreateUser();
 

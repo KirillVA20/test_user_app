@@ -16,11 +16,20 @@ const nameRules = [
 const avatarRules = [
   { required: true, message: 'Пожалуйста, введите URL аватара' },
   { type: 'url' as const, message: 'Пожалуйста, введите корректный URL' },
-  { pattern: /^https?:\/\/.+/, message: 'URL должен начинаться с http:// или https://' },
+  {
+    pattern: /^https?:\/\/.+/,
+    message: 'URL должен начинаться с http:// или https://',
+  },
 ];
 
-export const CreateUserModal: React.FC<CreateUserModalProps> = ({ open, onClose }) => {
-  const { form, handleSubmit, isLoading } = useCreateUserForm({ open, onSuccess: onClose });
+export const CreateUserModal: React.FC<CreateUserModalProps> = ({
+  open,
+  onClose,
+}) => {
+  const { form, handleSubmit, isLoading } = useCreateUserForm({
+    open,
+    onSuccess: onClose,
+  });
 
   return (
     <Modal
@@ -49,7 +58,10 @@ export const CreateUserModal: React.FC<CreateUserModalProps> = ({ open, onClose 
         </Form.Item>
 
         <Form.Item name="avatar" label="Аватар (URL)" rules={avatarRules}>
-          <Input placeholder="https://example.com/avatar.jpg" disabled={isLoading} />
+          <Input
+            placeholder="https://example.com/avatar.jpg"
+            disabled={isLoading}
+          />
         </Form.Item>
       </Form>
     </Modal>

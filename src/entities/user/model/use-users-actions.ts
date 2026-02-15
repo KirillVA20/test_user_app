@@ -1,5 +1,19 @@
-import { useQuery, useMutation, useQueryClient, UseQueryResult, UseMutationResult } from '@tanstack/react-query';
-import { fetchUsersApi, fetchUserByIdApi, createUserApi, updateUserApi, deleteUserApi, CreateUserDto, UpdateUserDto } from '../api';
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  UseQueryResult,
+  UseMutationResult,
+} from '@tanstack/react-query';
+import {
+  fetchUsersApi,
+  fetchUserByIdApi,
+  createUserApi,
+  updateUserApi,
+  deleteUserApi,
+  CreateUserDto,
+  UpdateUserDto,
+} from '../api';
 import type { User } from './types';
 
 export const USERS_QUERY_KEY = ['users'] as const;
@@ -24,7 +38,11 @@ export const useUser = (userId: string): UseQueryResult<User, Error> => {
   });
 };
 
-export const useCreateUser = (): UseMutationResult<User, Error, CreateUserDto> => {
+export const useCreateUser = (): UseMutationResult<
+  User,
+  Error,
+  CreateUserDto
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -35,7 +53,11 @@ export const useCreateUser = (): UseMutationResult<User, Error, CreateUserDto> =
   });
 };
 
-export const useUpdateUser = (): UseMutationResult<User, Error, UpdateUserDto> => {
+export const useUpdateUser = (): UseMutationResult<
+  User,
+  Error,
+  UpdateUserDto
+> => {
   const queryClient = useQueryClient();
 
   return useMutation({

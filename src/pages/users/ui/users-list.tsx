@@ -34,9 +34,16 @@ export const UsersList: React.FC<UsersListProps> = ({ users }) => {
           <UserCard key={user.id} user={user} onClick={handleEditUser} />
         ))}
       </UsersGrid>
-      <CreateUserModal open={createModalOpen} onClose={handleCloseCreateModal} />
+      <CreateUserModal
+        open={createModalOpen}
+        onClose={handleCloseCreateModal}
+      />
       {selectedUserId && (
-        <EditUserModal open={editModalOpen} userId={selectedUserId} onClose={handleCloseEditModal} />
+        <EditUserModal
+          open={editModalOpen}
+          userId={selectedUserId}
+          onClose={handleCloseEditModal}
+        />
       )}
     </UsersLayout>
   );

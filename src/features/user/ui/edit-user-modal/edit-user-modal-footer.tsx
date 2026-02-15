@@ -16,31 +16,37 @@ export const EditUserModalFooter: React.FC<EditUserModalFooterProps> = ({
   onDelete,
   onCancel,
   onSubmit,
-}) =>  <>
+}) => (
+  <>
     <Popconfirm
-        key="delete"
-        title="Вы уверены?"
-        description="Это действие нельзя отменить"
-        onConfirm={onDelete}
-        okText="Да"
-        cancelText="Нет"
-        disabled={isLoading}
-      >
-        <Button danger loading={isDeleting} disabled={isLoading && !isDeleting} style={{ float: 'left' }}>
-          Удалить
-        </Button>
-      </Popconfirm>
-      <Button key="cancel" onClick={onCancel} disabled={isLoading}>
-        Отмена
-      </Button>
+      key="delete"
+      title="Вы уверены?"
+      description="Это действие нельзя отменить"
+      onConfirm={onDelete}
+      okText="Да"
+      cancelText="Нет"
+      disabled={isLoading}
+    >
       <Button
-        key="submit"
-        type="primary"
-        loading={isLoading && !isDeleting}
-        disabled={isDeleting}
-        onClick={onSubmit}
+        danger
+        loading={isDeleting}
+        disabled={isLoading && !isDeleting}
+        style={{ float: 'left' }}
       >
-        Сохранить
+        Удалить
       </Button>
+    </Popconfirm>
+    <Button key="cancel" onClick={onCancel} disabled={isLoading}>
+      Отмена
+    </Button>
+    <Button
+      key="submit"
+      type="primary"
+      loading={isLoading && !isDeleting}
+      disabled={isDeleting}
+      onClick={onSubmit}
+    >
+      Сохранить
+    </Button>
   </>
-    
+);

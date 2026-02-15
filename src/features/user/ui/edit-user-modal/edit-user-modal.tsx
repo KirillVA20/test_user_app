@@ -18,19 +18,32 @@ const nameRules = [
 const avatarRules = [
   { required: true, message: 'Пожалуйста, введите URL аватара' },
   { type: 'url' as const, message: 'Пожалуйста, введите корректный URL' },
-  { pattern: /^https?:\/\/.+/, message: 'URL должен начинаться с http:// или https://' },
+  {
+    pattern: /^https?:\/\/.+/,
+    message: 'URL должен начинаться с http:// или https://',
+  },
 ];
 
-export const EditUserModal: React.FC<EditUserModalProps> = ({ open, userId, onClose }) => {
-  const { form, user, handleSubmit, handleDelete, isLoading, isDeleting } = useEditUserForm({
-    open,
-    userId,
-    onSuccess: onClose,
-  });
+export const EditUserModal: React.FC<EditUserModalProps> = ({
+  open,
+  userId,
+  onClose,
+}) => {
+  const { form, user, handleSubmit, handleDelete, isLoading, isDeleting } =
+    useEditUserForm({
+      open,
+      userId,
+      onSuccess: onClose,
+    });
 
   if (!user) {
     return (
-      <Modal open={open} title="Редактировать пользователя" onCancel={onClose} footer={null}>
+      <Modal
+        open={open}
+        title="Редактировать пользователя"
+        onCancel={onClose}
+        footer={null}
+      >
         <div style={{ textAlign: 'center', padding: '20px' }}>
           <Spin />
         </div>
@@ -52,7 +65,7 @@ export const EditUserModal: React.FC<EditUserModalProps> = ({ open, userId, onCl
           onDelete={handleDelete}
           onCancel={onClose}
           onSubmit={() => form.submit()}
-        />
+        />,
       ]}
     >
       <Form form={form} onFinish={handleSubmit} layout="vertical">
@@ -65,7 +78,10 @@ export const EditUserModal: React.FC<EditUserModalProps> = ({ open, userId, onCl
         </Form.Item>
 
         <Form.Item name="avatar" label="Аватар (URL)" rules={avatarRules}>
-          <Input placeholder="https://example.com/avatar.jpg" disabled={isLoading} />
+          <Input
+            placeholder="https://example.com/avatar.jpg"
+            disabled={isLoading}
+          />
         </Form.Item>
       </Form>
     </Modal>

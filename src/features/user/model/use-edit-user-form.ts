@@ -10,7 +10,12 @@ interface UseEditUserFormParams {
   onError?: (error: Error) => void;
 }
 
-export const useEditUserForm = ({ open, userId, onSuccess, onError }: UseEditUserFormParams) => {
+export const useEditUserForm = ({
+  open,
+  userId,
+  onSuccess,
+  onError,
+}: UseEditUserFormParams) => {
   const [form] = Form.useForm<UserFormValues>();
   const { data: user, isLoading: isUserLoading } = useUser(userId);
   const updateMutation = useUpdateUser();
@@ -27,10 +32,13 @@ export const useEditUserForm = ({ open, userId, onSuccess, onError }: UseEditUse
 
   const handleSubmit = (values: UserFormValues) => {
     if (user) {
-      updateMutation.mutate({ id: user.id, ...values }, {
-        onSuccess,
-        onError,
-      });
+      updateMutation.mutate(
+        { id: user.id, ...values },
+        {
+          onSuccess,
+          onError,
+        }
+      );
     }
   };
 
@@ -48,7 +56,8 @@ export const useEditUserForm = ({ open, userId, onSuccess, onError }: UseEditUse
     user,
     handleSubmit,
     handleDelete,
-    isLoading: isUserLoading || updateMutation.isPending || deleteMutation.isPending,
+    isLoading:
+      isUserLoading || updateMutation.isPending || deleteMutation.isPending,
     isDeleting: deleteMutation.isPending,
   };
 };

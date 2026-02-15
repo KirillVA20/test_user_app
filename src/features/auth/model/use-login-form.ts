@@ -1,18 +1,15 @@
 import { Form } from 'antd';
-import { useLogin } from './use-login';
 import type { LoginCredentials } from '../api';
 
 interface UseLogingForm {
-  onSuccess?: () => void
-  onError?: (error: Error) => void
+  onLogin: (values: LoginCredentials) => void;
 }
 
-export const useLoginForm = ({ onSuccess, onError }: UseLogingForm) => {
+export const useLoginForm = ({ onLogin }: UseLogingForm) => {
   const [form] = Form.useForm<LoginCredentials>();
-  const { mutate: login, isPending, isError, error } = useLogin({ onSuccess, onError});
 
   const handleSubmit = (values: LoginCredentials) => {
-    login(values);
+    onLogin?.(values);
   };
 
   const handleReset = () => {
@@ -23,8 +20,5 @@ export const useLoginForm = ({ onSuccess, onError }: UseLogingForm) => {
     form,
     handleSubmit,
     handleReset,
-    isLoading: isPending,
-    isError,
-    error,
   };
 };

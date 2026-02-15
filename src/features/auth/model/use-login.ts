@@ -4,8 +4,8 @@ import type { LoginCredentials } from '../api';
 import { useAuth } from '@/shared/lib/auth';
 
 interface UseLogin {
-  onSuccess?: () => void
-  onError?: (error: Error) => void
+  onSuccess?: () => void;
+  onError?: (error: Error) => void;
 }
 
 export const useLogin = ({ onSuccess, onError }: UseLogin) => {
@@ -15,10 +15,10 @@ export const useLogin = ({ onSuccess, onError }: UseLogin) => {
     mutationFn: (credentials: LoginCredentials) => loginApi(credentials),
     onSuccess: (data) => {
       setToken(data.token);
-      onSuccess?.()
+      onSuccess?.();
     },
     onError: (error: Error) => {
-      onError?.(error)
+      onError?.(error);
     },
   });
 };

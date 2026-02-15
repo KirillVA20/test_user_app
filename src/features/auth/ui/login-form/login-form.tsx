@@ -2,7 +2,7 @@ import React from 'react';
 import { Form } from 'antd';
 import styled from 'styled-components';
 import { Button, Input } from '@/shared/ui';
-import { useLoginForm } from '../../model';
+import { useLogin, useLoginForm } from '../../model';
 
 const LoginCard = styled.div`
   background: white;
@@ -31,35 +31,39 @@ const ErrorBlock = styled.div`
 `;
 
 interface LoginFormProps {
-  onSuccess?: () => void
-  onError?: (error: Error) => void
+  onSuccess?: () => void;
+  onError?: (error: Error) => void;
 }
 
-const usernameRules = [{ required: true, message: 'Пожалуйста, введите логин' }]
-const passwordRules = [{ required: true, message: 'Пожалуйста, введите пароль' }]
+const usernameRules = [
+  { required: true, message: 'Пожалуйста, введите логин' },
+];
+const passwordRules = [
+  { required: true, message: 'Пожалуйста, введите пароль' },
+];
 
 export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess, onError }) => {
-  const { form, handleSubmit, handleReset, isLoading, isError, error } = useLoginForm({ onSuccess, onError });
+  const {
+    mutate: login,
+    isPending,
+    isError,
+    error,
+  } = useLogin({ onSuccess, onError });
+  const { form, handleSubmit, handleReset } = useLoginForm({ onLogin: login });
 
   return (
     <LoginCard>
       <Title>Вход в систему</Title>
       <Form form={form} onFinish={handleSubmit} layout="vertical">
-        <Form.Item
-          name="username"
-          rules={usernameRules}
-        >
-          <Input placeholder="Логин" size="large" disabled={isLoading} />
+        <Form.Item name="username" rules={usernameRules}>
+          <Input placeholder="Логин" size="large" disabled={isPending} />
         </Form.Item>
 
-        <Form.Item
-          name="password"
-          rules={passwordRules}
-        >
+        <Form.Item name="password" rules={passwordRules}>
           <Input.Password
             placeholder="Пароль"
             size="large"
-            disabled={isLoading}
+            disabled={isPending}
           />
         </Form.Item>
 
@@ -68,10 +72,10 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess, onError }) => {
             type="primary"
             htmlType="submit"
             size="large"
-            loading={isLoading}
+            loading={isPending}
             block
           >
-            {isLoading ? 'Вход...' : 'Войти'}
+            {isPending ? 'Вход...' : 'Войти'}
           </Button>
         </Form.Item>
 
@@ -80,7 +84,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onSuccess, onError }) => {
             htmlType="button"
             size="large"
             onClick={handleReset}
-            disabled={isLoading}
+            disabled={isPending}
             block
           >
             Сбросить

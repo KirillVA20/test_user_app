@@ -55,23 +55,17 @@ const formatDate = (dateString: string) => {
 };
 
 export const UserCard: React.FC<UserCardProps> = ({ user, onClick }) => {
-  const date = useMemo(() => formatDate(user?.createdAt), [user?.createdAt])
+  const date = useMemo(() => formatDate(user?.createdAt), [user?.createdAt]);
 
   return (
     <StyledCard onClick={() => onClick?.(user)}>
       <CardContent>
-        <Avatar
-          size={64}
-          src={user.avatar}
-          icon={<UserOutlined />}
-        />
+        <Avatar size={64} src={user.avatar} icon={<UserOutlined />} />
         <UserInfo>
           <UserName>{user.name}</UserName>
-          <CreatedDate>
-            Зарегистрирован: {date}
-          </CreatedDate>
+          <CreatedDate>Зарегистрирован: {date}</CreatedDate>
         </UserInfo>
       </CardContent>
     </StyledCard>
   );
-}
+};

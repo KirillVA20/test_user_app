@@ -48,7 +48,7 @@ const StyledPassword = styled(AntInput.Password)`
   }
 `;
 
-export interface InputProps extends AntInputProps {}
+type InputProps = AntInputProps;
 
 export const Input: React.FC<InputProps> & {
   TextArea: typeof StyledTextArea;

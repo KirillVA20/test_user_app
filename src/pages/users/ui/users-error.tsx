@@ -11,7 +11,9 @@ export const UsersError: React.FC<UsersErrorProps> = ({ error }) => {
     <UsersLayout>
       <Alert
         message="Ошибка загрузки"
-        description={error?.message || 'Не удалось загрузить список пользователей'}
+        description={
+          error?.message || 'Не удалось загрузить список пользователей'
+        }
         type="error"
         showIcon
       />

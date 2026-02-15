@@ -1,4 +1,9 @@
-import axios, { AxiosInstance, AxiosError, InternalAxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, {
+  AxiosInstance,
+  AxiosError,
+  InternalAxiosRequestConfig,
+  AxiosResponse,
+} from 'axios';
 import { ENV } from '@shared/config/env';
 
 const API_BASE_URL = ENV.API_BASE_URL;
@@ -29,7 +34,7 @@ apiInstance.interceptors.request.use(
 
 apiInstance.interceptors.response.use(
   (response: AxiosResponse) => {
-    return response
+    return response;
   },
-  async (error: AxiosError) => {}
+  async (_error: AxiosError) => {}
 );

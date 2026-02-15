@@ -12,7 +12,9 @@ const MOCK_USER = {
   password: 'admin',
 };
 
-export const loginApi = (credentials: LoginCredentials): Promise<LoginResponse> => {
+export const loginApi = (
+  credentials: LoginCredentials
+): Promise<LoginResponse> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (

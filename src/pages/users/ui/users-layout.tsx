@@ -33,7 +33,10 @@ interface UsersLayoutProps {
   headerAction?: React.ReactNode;
 }
 
-export const UsersLayout: React.FC<UsersLayoutProps> = ({ children, headerAction }) => {
+export const UsersLayout: React.FC<UsersLayoutProps> = ({
+  children,
+  headerAction,
+}) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {

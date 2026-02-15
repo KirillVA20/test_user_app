@@ -2,7 +2,6 @@ import React from 'react';
 import { useAuthState } from './use-auth-state';
 import { AuthContext, AuthContextType } from './auth-context';
 
-
 interface AuthProviderProps {
   children: React.ReactNode;
 }

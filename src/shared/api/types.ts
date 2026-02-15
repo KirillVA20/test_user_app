@@ -19,6 +19,6 @@ export interface PaginatedResponse<T> {
 }
 
 export interface ApiRequestConfig {
-  params?: Record<string, any>;
+  params?: Record<string, unknown>;
   headers?: Record<string, string>;
 }

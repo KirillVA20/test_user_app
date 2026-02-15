@@ -1,19 +1,19 @@
-import React from "react";
+import React from 'react';
 import {
   createBrowserRouter,
   RouterProvider as ReactRouterProvider,
   Navigate,
   Outlet,
-} from "react-router-dom";
+} from 'react-router-dom';
 
-import { ProtectedRoute, PublicRoute } from "@/features/auth";
-import { Login } from "@/pages/login";
-import { Users } from "@/pages/users";
-import { NotFound } from "@/pages/not-found";
-import { queryClient } from "../query";
-import { usersLoader } from "@/pages/users/model/use-user-loader";
+import { ProtectedRoute, PublicRoute } from '@/features/auth';
+import { Login } from '@/pages/login';
+import { Users } from '@/pages/users';
+import { NotFound } from '@/pages/not-found';
+import { queryClient } from '../query';
+import { usersLoader } from '@/pages/users/model/use-user-loader';
 
-const RootLayout: React.FC = () => <Outlet />
+const RootLayout: React.FC = () => <Outlet />;
 
 const router = createBrowserRouter([
   {
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
         element: <Navigate to="/login" replace />,
       },
       {
-        path: "/users",
+        path: '/users',
         element: (
           <ProtectedRoute>
             <Users />
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
         loader: usersLoader(queryClient),
       },
       {
-        path: "/login",
+        path: '/login',
         element: (
           <PublicRoute>
             <Login />
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "*",
+        path: '*',
         element: <NotFound />,
       },
     ],

@@ -21,14 +21,14 @@ export const Login: React.FC = () => {
       description: 'Добро пожаловать!',
     });
     navigate('/users');
-  }
+  };
 
   const onError = (error: Error) => {
     notification.error({
       message: 'Ошибка авторизации',
       description: error.message,
     });
-  }
+  };
 
   return (
     <LoginContainer>

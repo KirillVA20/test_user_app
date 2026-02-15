@@ -6,8 +6,8 @@ interface AddUserButtonProps {
   onClick: () => void;
 }
 
-export const AddUserButton: React.FC<AddUserButtonProps> = ({ onClick }) => 
-    <Button type="primary" icon={<PlusOutlined />} onClick={onClick}>
-      Добавить нового юзера
-    </Button>
-
+export const AddUserButton: React.FC<AddUserButtonProps> = ({ onClick }) => (
+  <Button type="primary" icon={<PlusOutlined />} onClick={onClick}>
+    Добавить нового юзера
+  </Button>
+);
